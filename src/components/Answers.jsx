@@ -18,11 +18,13 @@ export const Answers = ({answers, selectedAnswer, answerState, onSelect}) => {
                     cssClasses = answerState
                 }
                 return (
-                    <li key={answer} className='answer'>
+                    <li key={answer}
+                        className='answer'>
                         <button onClick={() => onSelect(answer)}
                                 className={cssClasses}
-                                disabled={answerState !== ''}
-                        >{answer}</button>
+                                disabled={answerState !== ''}>
+                            {answer}
+                        </button>
                     </li>
                 )
             })}
