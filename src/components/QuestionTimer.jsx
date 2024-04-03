@@ -1,10 +1,9 @@
 import {useEffect, useState} from "react";
 
-export const QuestionTimer = ({timeout, onTimeout}) => {
+export const QuestionTimer = ({timeout, onTimeout, mode}) => {
     const [remainingTime, setRemainingTime] = useState(timeout)
 
     useEffect(() => {
-        console.log('Call Timeout')
         const timer = setTimeout(onTimeout, timeout)
         return () => {
             clearTimeout(timer)
@@ -12,7 +11,6 @@ export const QuestionTimer = ({timeout, onTimeout}) => {
     }, [timeout, onTimeout]);
 
     useEffect(() => {
-        console.log('Call Interval')
         const interval = setInterval(() => {
             setRemainingTime(prevRemainingTime => prevRemainingTime - 100)
         }, 100)
@@ -22,6 +20,9 @@ export const QuestionTimer = ({timeout, onTimeout}) => {
         }
     }, [])
 
-    return <progress id='question-time' max={timeout} value={remainingTime}/>
+    return <progress id='question-time'
+                     max={timeout}
+                     value={remainingTime}
+                     className={mode}/>
 
 }
